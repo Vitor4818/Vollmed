@@ -18,6 +18,7 @@ public class MedicoController {
 
     @Autowired
     private MedicoRepository repository;
+
     @PostMapping
     public void cadastrarMedico(@RequestBody DadosCadastroMedico dados){
         // Covertendo o DTO para um Objeto do tipo Medico, e salvando no banco de dados

@@ -1,16 +1,17 @@
 package med.voll.api.Endereco;
 
 import jakarta.persistence.Embeddable;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.medico.DadosEndereco;
 
 //Classe que representa um endereço e será incorporada em outras entidades com @Embedded
-@Embeddable
 @AllArgsConstructor    //  Criando construtos parametrizado
 @Getter               //   Criando metodos getters
-@NoArgsConstructor   //    Criando construtor sem parametros
+@NoArgsConstructor (access = AccessLevel.PUBLIC)   //    Criando construtor sem parametros
+@Embeddable
 public class Endereco {
     private String logradouro;
     private String bairro;
@@ -29,5 +30,9 @@ public class Endereco {
         this.cidade = dados.cidade();
         this.numero = dados.numero();
         this.complemento = dados.complemento();
+    }
+
+
+    public Endereco() {
     }
 }
