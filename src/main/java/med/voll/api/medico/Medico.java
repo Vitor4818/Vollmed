@@ -9,7 +9,6 @@ import med.voll.api.Endereco.Endereco;
 //Criando classe de medicos, que irá representar a tabela de médicos no banco de dados
 @Table(name = "medicos")
 @Entity(name = "Medico")
-
 @Getter //Usando lombok para criar metodos getters
 @NoArgsConstructor //Criando construtor sem parametros com lombok
 @AllArgsConstructor //Criando construtor com paramentros com lombok
@@ -25,8 +24,39 @@ public class Medico {
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public Especialidade getEspecialidade() {
+        return especialidade;
+    }
+
+    public String getCrm() {
+        return crm;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
     @Embedded
     private Endereco endereco;
+
+    public Medico() {
+    }
 
     public Medico(DadosCadastroMedico dados) {
         this.nome = dados.nome();
