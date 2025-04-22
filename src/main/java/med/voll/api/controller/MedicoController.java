@@ -8,6 +8,8 @@ import med.voll.api.medico.DadosListagemMedico;
 import med.voll.api.medico.Medico;
 import med.voll.api.medico.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,12 +31,17 @@ public class MedicoController {
 
     }
 
-    //Não é necessario o uso de @Transactional pois estamos apenas listando os dados do banco de dados
-    @GetMapping
-    public List<DadosListagemMedico> listarMedico(){   //recebe um DTO como parametros e retorna uma lista
-        return repository.findAll().stream().map(DadosListagemMedico::new).toList(); //Converte o DTO para Objetos do tipo Medico
-    }
+        //Não é necessario o uso de @Transactional pois estamos apenas listando os dados do banco de dados
+    //   @GetMapping
+    //   public List<DadosListagemMedico> listarMedico(){   //recebe um DTO como parametros e retorna uma lista
+    //     return repository.findAll().stream().map(DadosListagemMedico::new).toList(); //Converte o DTO para Objetos do tipo Medico
+    //   }
 
+    //Criando metodo GET com paginação
+    @GetMapping
+    public Page<DadosListagemMedico> listarMedico(Pageable paginacao){  // Recebe classe Pageable para a paginação
+        return repository.findAll(paginacao).map(DadosListagemMedico::new);
+    }
 
 
 
